@@ -1,0 +1,21 @@
+###
+
+GET http://127.0.0.1:8000/api/livres
+
+### test pour obtenir un livre par isbn 
+GET http://127.0.0.1:8000/api/livres/9782896152254
+
+### 
+GET http://127.0.0.1:8000/api/livres/9782764626597
+
+### test pour obtenir un livre par titre 
+GET http://127.0.0.1:8000/api/livres/titres
+
+### test pour obtenir un ou plusieurs livres dont le titre contient ... 
+GET http://127.0.0.1:8000/api/livres/titrecontient/terre 
+
+### 
+GET http://127.0.0.1:8000/api/127.0.0.1:8000/api/users
+
+### test pour obtenir les usagers par login 
+GET http://127.0.0.1:8000/api/127.0.0.1:8000/api/users/login/bob

@@ -7,8 +7,9 @@ const mongoose = require('mongoose');
 const app =express(); 
 const PORT = 8000;
 
-mongoose.connect('mongodb://localhost/Labo01-ServiceWeb');
+mongoose.connect('mongodb://127.0.0.1/Labo01-ServiceWeb');
 let db= mongoose.connection; 
+
 
 db.on('error', (err) => {
 	console.error('erreur de BD: ', err);
@@ -21,6 +22,7 @@ db.once('open', ()=> {
 app.use('/api/livres', require('./routes/livres.js')); 
 app.use('/api/users', require('./routes/users.js'));
 app.use('/', require('./routes/base.js'));
+
 
 app.get('*', (requete, reponse)=> {
 	reponse.send("OUPS, erreur page introuvable!rs!!");

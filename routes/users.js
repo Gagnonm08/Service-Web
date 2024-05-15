@@ -1,15 +1,26 @@
-const express = require('express'); 
-const router = express.Router(); 
+const express = require('express');
+const { getUsagers } = require('../modeles/Usagers');
+const router = express.Router();
+const Usagers = require('../modeles/Usagers.js');
 
-router.get('/', (requete,reponse)=> {
-	reponse.send('Voici la route /api/users')
+router.get('/login/:login', (requete,reponse)=> {
+	let login= requete.params.login;
+	let filtre = {"login": login};
+	Usagers.getUsagersParFiltre(filtre, (err, users)=> {
+		if (err) throw err; 
+		reponse.json(users);
+	}, 25);
 });
 
-router.get('/autre', (requete,reponse)=> {
-	reponse.send('Voici la route /api/users/autre')
-});
-router.get('/9',(requete,reponse)=> {
-	reponse.send('Voici la route /api/users/9')
+router.get('/', (requete, reponse) => {
+    Usagers.getUsagers((err, users) => {
+        if (err) throw err;
+        reponse.json(users);
+    }, 25); // 25 est la limite
 });
 
-module.exports= router; 
+router.get('/', (requete, reponse) => {
+    reponse.send('Voici la route /api/users');
+});
+
+module.exports = router;
